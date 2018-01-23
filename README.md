@@ -4,6 +4,8 @@ Terraform module to set up a storage account on Azure and prep it for use as rem
 This module makes up part of a quick-start set of modules.  This is intended to be used prior to a larger deployment to
 provide remote state capability in the beginning of a project to help prevent isolation of work.
 
+This module is intended to be used independently of larger configurations, to provide separation of responsibility.
+
 ## Usage
 ```hcl-terraform
 module "remote-state-storage"{
@@ -13,15 +15,15 @@ module "remote-state-storage"{
 }
 
 ```
-
-This can later be used as follows:
+Due to the nature of backend config, you will need to make note of the outputs of the module.
+These can later be used as the following example illustrates:
 ```hcl-terraform
 terraform{
   backend "azurerm" {
-    storage_account_name = ""
-    container_name       = ""
-    key                  = ""
-    resource_group_name  = ""
+    storage_account_name = "demoremotestates"
+    container_name       = "demo-remote-state-container"
+    key                  = "mydemo/terraform.tfstate"
+    resource_group_name  = "demo-remote-state-rg"
   }
 }
 ```
