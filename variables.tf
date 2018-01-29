@@ -1,5 +1,6 @@
 variable "name" {
-  description = "(Required) Specifies the human consumable label for this resource.  "
+  description = "(Required) Specifies the human consumable label for this resource."
+  default     = ""
 }
 
 variable "location" {
